@@ -14,18 +14,24 @@ const map = {
 function telephoneWords(digitString) {
   const results = [];
   const arr = map[digitString[0]];
+
   function recurse(buildArr, idx = 1) {
     if (buildArr.length === digitString.length) {
       results.push(buildArr.join(""));
       return;
     }
+
     const next = map[digitString[idx]];
+
     for (let i = 0; i < next.length; i++) {
       recurse(buildArr.concat(next[i]), idx + 1);
     }
+
   }
+
   for (let i = 0; i < arr.length; i++) {
     recurse([arr[i]])
   }
+  
   return results;
 }
